@@ -1,0 +1,311 @@
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Simples Contábil - Contabilidade para MEI e Pessoa Física</title>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap" rel="stylesheet" />
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: 'Montserrat', sans-serif;
+    background: #f9fafb;
+    color: #222;
+    line-height: 1.6;
+  }
+  a { text-decoration: none; color: #2a9d8f; }
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+  }
+  header {
+    background: #ffffff;
+    padding: 20px 0;
+    box-shadow: 0 2px 8px rgb(42 157 143 / 0.15);
+  }
+  header .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  header h1 {
+    color: #2a9d8f;
+    font-weight: 700;
+    font-size: 1.8rem;
+  }
+  nav a {
+    margin-left: 20px;
+    font-weight: 600;
+  }
+  nav a:hover { color: #1b6050; }
+  .hero {
+    position: relative;
+    background: url('https://images.unsplash.com/photo-1581093588401-8ca0c6b73588?auto=format&fit=crop&w=1470&q=80') center center/cover no-repeat;
+    height: 550px;
+    color: white;
+    display: flex;
+    align-items: center;
+    padding: 0 20px;
+  }
+  .hero::before {
+    content: "";
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: rgba(42, 157, 143, 0.75);
+    z-index: 1;
+  }
+  .hero-content {
+    position: relative;
+    max-width: 600px;
+    z-index: 2;
+  }
+  .hero-content h2 {
+    font-size: 3rem;
+    margin-bottom: 15px;
+    font-weight: 700;
+  }
+  .hero-content p {
+    font-size: 1.25rem;
+    margin-bottom: 30px;
+  }
+  .btn-primary {
+    background: #e76f51;
+    color: white;
+    padding: 12px 28px;
+    font-weight: 600;
+    border-radius: 30px;
+    cursor: pointer;
+    border: none;
+    transition: background-color 0.3s ease;
+  }
+  .btn-primary:hover { background: #c6503e; }
+
+  .simples-info {
+    background: #ffffff;
+    padding: 50px 20px 30px;
+    text-align: center;
+  }
+  .simples-info .green { color: #2a9d8f; }
+  .simples-info h2 {
+    font-size: 1.8rem;
+    margin-bottom: 10px;
+    font-weight: 700;
+  }
+  .simples-info .subtitle {
+    font-size: 1.1rem;
+    margin-bottom: 30px;
+    color: #444;
+  }
+  .grid-benefits {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 25px;
+  }
+  .benefit img {
+    width: 40px;
+    margin-bottom: 10px;
+  }
+  .benefit p {
+    font-size: 1rem;
+    color: #333;
+    font-weight: 500;
+  }
+
+  .services {
+    background: #ffffff;
+    padding: 60px 20px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit,minmax(280px,1fr));
+    gap: 40px;
+  }
+  .service-card {
+    border-radius: 10px;
+    box-shadow: 0 6px 15px rgb(42 157 143 / 0.1);
+    padding: 30px 20px;
+    background: #f0f4f8;
+    transition: transform 0.3s ease;
+  }
+  .service-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 10px 25px rgb(42 157 143 / 0.25);
+  }
+  .service-card h3 {
+    color: #2a9d8f;
+    margin-bottom: 15px;
+    font-size: 1.5rem;
+  }
+  .service-card ul {
+    list-style: none;
+    color: #333;
+  }
+  .service-card ul li {
+    padding-left: 1.3em;
+    position: relative;
+    margin-bottom: 12px;
+    font-weight: 500;
+  }
+  .service-card ul li::before {
+    content: "✔";
+    position: absolute;
+    left: 0;
+    color: #e76f51;
+    font-weight: 900;
+  }
+
+  .extra-info {
+    background: #f0f9f8;
+    padding: 40px 20px;
+  }
+  .extra-info .container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit,minmax(220px,1fr));
+    gap: 30px;
+    text-align: center;
+  }
+  .info-card {
+    background: white;
+    padding: 25px 20px;
+    border-radius: 12px;
+    box-shadow: 0 5px 15px rgb(42 157 143 / 0.1);
+    transition: transform 0.3s ease;
+  }
+  .info-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 12px 30px rgb(42 157 143 / 0.25);
+  }
+  .info-card h4 {
+    color: #2a9d8f;
+    margin-bottom: 12px;
+    font-size: 1.3rem;
+  }
+  .info-card p {
+    font-weight: 500;
+    color: #444;
+    font-size: 1rem;
+  }
+
+  footer {
+    background: #2a9d8f;
+    color: white;
+    text-align: center;
+    padding: 30px 20px;
+    font-weight: 600;
+  }
+  footer a { color: #f4a261; }
+
+  /* WhatsApp Bot */
+  .whatsapp-float {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background: #25d366;
+    color: white;
+    border-radius: 50%;
+    width: 60px;
+    height: 60px;
+    text-align: center;
+    font-size: 30px;
+    z-index: 1000;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.3);
+  }
+  .whatsapp-float img {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="container">
+    <h1>Simples Contábil</h1>
+    <nav>
+      <a href="#services">Serviços</a>
+      <a href="https://wa.me/5561981179625" target="_blank">Contato</a>
+    </nav>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="container hero-content">
+    <h2>Contabilidade Digital para MEI e Pessoa Física</h2>
+    <p>Serviços completos e personalizados a partir de <strong>R$ 49,99</strong> por mês. Atendemos todo o Brasil!</p>
+    <button class="btn-primary" onclick="window.open('https://wa.me/5561981179625','_blank')">Solicite seu atendimento</button>
+  </div>
+</section>
+
+<section class="simples-info destaque-topo">
+  <div class="container">
+    <h2>Por que escolher a <span class="green">Simples Contábil</span>?</h2>
+    <p class="subtitle">Soluções contábeis descomplicadas para o seu negócio crescer com segurança.</p>
+    <div class="grid-benefits">
+      <div class="benefit">
+        <img src="https://cdn-icons-png.flaticon.com/512/1828/1828884.png" alt="Atendimento" />
+        <p>Atendimento ágil e humanizado</p>
+      </div>
+      <div class="benefit">
+        <img src="https://cdn-icons-png.flaticon.com/512/1828/1828919.png" alt="Online" />
+        <p>Processos 100% digitais</p>
+      </div>
+      <div class="benefit">
+        <img src="https://cdn-icons-png.flaticon.com/512/1828/1828970.png" alt="Planos" />
+        <p>Planos acessíveis e personalizados</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="services" class="services container">
+  <div class="service-card">
+    <h3>Serviços para MEI</h3>
+    <ul>
+      <li>Abertura de MEI: CNPJ, inscrição municipal e estadual (se aplicável).</li>
+      <li>Emissão mensal do DAS com lembrete.</li>
+      <li>Declaração Anual do MEI (DASN-SIMEI): preenchimento e envio.</li>
+      <li>Baixa do MEI: encerramento completo.</li>
+      <li>Parcelamento de débitos e regularização com Receita Federal.</li>
+      <li>Consulta de pendências: situação cadastral, desenquadramento e mais.</li>
+    </ul>
+  </div>
+  <div class="service-card">
+    <h3>Serviços para Pessoa Física</h3>
+    <ul>
+      <li>Regularização na Receita Federal: CPF/CNPJ, declarações atrasadas, desbloqueios e reativações.</li>
+      <li>Imposto de Renda Pessoa Física: declaração, restituição e regularização.</li>
+      <li>Orientações personalizadas e suporte direto via WhatsApp.</li>
+    </ul>
+  </div>
+</section>
+
+<section class="extra-info">
+  <div class="container">
+    <div class="info-card">
+      <h4>Primeiro Mês Gratuito</h4>
+      <p>Teste nossos serviços sem compromisso e veja como podemos facilitar sua contabilidade.</p>
+    </div>
+    <div class="info-card">
+      <h4>Serviços Avulsos</h4>
+      <p>Contrate apenas o que você precisa, sem pacotes obrigatórios. Flexibilidade para seu negócio.</p>
+    </div>
+    <div class="info-card">
+      <h4>Atendimento Personalizado</h4>
+      <p>Suporte dedicado via WhatsApp para tirar dúvidas e oferecer soluções rápidas.</p>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <p>Contato: <a href="https://wa.me/5561981179625" target="_blank">WhatsApp (61) 98117-9625</a> | Instagram: <a href="https://instagram.com/lima_anderson9" target="_blank">@lima_anderson9</a></p>
+  <p>© 2025 Simples Contábil - Todos os direitos reservados.</p>
+</footer>
+
+<!-- WhatsApp Robo Flutuante -->
+<a href="https://wa.me/5561981179625" class="whatsapp-float" target="_blank">
+  <img src="https://cdn-icons-png.flaticon.com/512/733/733585.png" alt="WhatsApp Bot">
+</a>
+
+</body>
+</html>
